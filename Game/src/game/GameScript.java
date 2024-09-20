@@ -12,21 +12,24 @@ public class GameScript {
 	}
     }
     
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 	
 	// General variable setup
-	int i = 0;
-	int randomColor = 0;
-
-	final int codeLength = 5;
+	int loop1 = 0;
+	int loop2 = 0;
+	int randomColor;
+	int attempt = 0;
+	
+	final int colorCount = 6;
+	final int gameLength = 10;
+	final int codeLength = 4;
+	
 	Scanner sc = new Scanner(System.in);
 	Random r = new Random();
 	
 	String name;
 	String colorCode = "";
-	
 
-	
 	// Color list array
 	
 	ArrayList<String> colorList = new ArrayList<>();
@@ -55,18 +58,37 @@ public class GameScript {
 	System.out.println(masterMindLargeText);
 	System.out.println("Let's start with your name...");
 	name = sc.nextLine();
-	flush();
 	
-	System.out.println(masterMindLargeText);
-	System.out.println("All right " + name + ", time to begin...");
-	
-	while (i < codeLength) {
-	    randomColor = r.nextInt(5);
+	while (loop1 < codeLength) {
+	    
+	    randomColor = r.nextInt(colorCount - 1);
 	    colorCode = colorCode + colorList.get(randomColor);
 	    
-	    i++;
+	    loop1++;
+	    }
+	
+	while (loop2 < gameLength) {
 	    
+	    attempt = loop2 + 1;
+	    flush();
+	    System.out.println(colorCode);
+	    System.out.println(masterMindLargeText);
+	    System.out.println("Attempt: " + attempt + "\r\n"
+		    	     + "Welcome " + name + ", please enter your guess down below.\r\n"
+		    	     + "Choose from: " + colorList);
+	    
+	    
+	    if (sc.nextLine().toUpperCase().equals(colorCode)) {
+		System.out.println("Nice you did it!");
+		sc.close();
+		return;
+	    }
+	    
+	    
+	    
+	    
+	    loop2++;
 	}
-	System.out.println(colorCode);
+	sc.close();
     }
 }
