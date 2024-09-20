@@ -131,7 +131,7 @@ public class GameScript {
 		System.out.println("Previous guess:\r\n"
 				 + playerInput + "\n\r" + positionEvaluation + "\r\n" + "\r\n"
 				 + "Incorrect colors are represented with hyphens (-).\r\n"
-				 + "Correct colors are labeled white (B).\r\n"
+				 + "Correct colors are labeled black (B).\r\n"
 				 + "Colors present in the code but in the incorrect position are labeled white (W).\r\n");
 	    }
 	    
