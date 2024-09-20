@@ -140,7 +140,7 @@ public class GameScript {
 	    if (wrongInput == true) {
 		wrongInput = false;
 		System.out.println("ERROR\r\n"
-				 + "Your guess must be at four characters long!");
+				 + "Your guess must be at least " + codeLength + " characters long!");
 	    }
 	    
 	    // Makes the user-input upper case
