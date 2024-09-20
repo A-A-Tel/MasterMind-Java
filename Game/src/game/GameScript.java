@@ -82,6 +82,13 @@ public class GameScript {
 				+ "    | |    | (_) | | (_) |   | |_) | | (_| | | (_| | |_|\r\n"
 				+ "    |_|     \\___/   \\___/    |_.__/   \\__,_|  \\__,_| (_)";
 	
+	final String goodBoyText = "  ____   ___    ___   ___        ____    ___   __ __  __ \r\n"
+		+ " /    | /   \\  /   \\ |   \\      |    \\  /   \\ |  |  ||  |\r\n"
+		+ "|   __||     ||     ||    \\     |  o  )|     ||  |  ||  |\r\n"
+		+ "|  |  ||  O  ||  O  ||  D  |    |     ||  O  ||  ~  ||__|\r\n"
+		+ "|  |_ ||     ||     ||     |    |  O  ||     ||___, | __ \r\n"
+		+ "|     ||     ||     ||     |    |     ||     ||     ||  |\r\n"
+		+ "|___,_| \\___/  \\___/ |_____|    |_____| \\___/ |____/ |__|\r\n";
 	
 	// Introduction
 	
@@ -156,7 +163,7 @@ public class GameScript {
 		flush();
 		System.out.println(masterMindText);
 		System.out.println(goodJobText);
-		System.out.println("Nice you did it!");
+		System.out.println(goodBoyText);
 		sc.close();
 		return;
 	    }
