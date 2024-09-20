@@ -15,8 +15,8 @@ public class GameScript {
     public static void main(String[] args) {
 	
 	// General variable setup
-	int loop1 = 0;
-	int loop2 = 0;
+	
+	int i;
 	int randomColor;
 	int attempt = 0;
 	
@@ -24,11 +24,14 @@ public class GameScript {
 	final int gameLength = 10;
 	final int codeLength = 4;
 	
+	String name;
+	String positionEvaluation;
+	String colorCode = "";
+	
+	boolean firstAttempt = false;
+	
 	Scanner sc = new Scanner(System.in);
 	Random r = new Random();
-	
-	String name;
-	String colorCode = "";
 
 	// Color list array
 	
@@ -59,17 +62,16 @@ public class GameScript {
 	System.out.println("Let's start with your name...");
 	name = sc.nextLine();
 	
-	while (loop1 < codeLength) {
+	for (i = 0; i < codeLength; i++) {
 	    
 	    randomColor = r.nextInt(colorCount - 1);
 	    colorCode = colorCode + colorList.get(randomColor);
 	    
-	    loop1++;
 	    }
 	
-	while (loop2 < gameLength) {
+	for (i = 0; i < gameLength; i++) {
 	    
-	    attempt = loop2 + 1;
+	    attempt = i + 1;
 	    flush();
 	    System.out.println(colorCode);
 	    System.out.println(masterMindLargeText);
@@ -77,17 +79,26 @@ public class GameScript {
 		    	     + "Welcome " + name + ", please enter your guess down below.\r\n"
 		    	     + "Choose from: " + colorList);
 	    
+	    if (firstAttempt == true) {
+		System.out.println("Previous guess:\r\n"
+				 + name + "\r\n"
+				 + "Incorrect colors are represented with an empty space.\r\n"
+				 + "Correct colors are labeled white (B).\r\n"
+				 + "Colors present in the code but in the incorrect position are labeled white (W).");
+	    }
+	    
+	    
 	    
 	    if (sc.nextLine().toUpperCase().equals(colorCode)) {
 		System.out.println("Nice you did it!");
 		sc.close();
 		return;
 	    }
+	    firstAttempt = true;
 	    
 	    
 	    
-	    
-	    loop2++;
+
 	}
 	sc.close();
     }
