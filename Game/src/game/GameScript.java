@@ -4,7 +4,10 @@ import java.util.*;
 
 public class GameScript {
     
+    // Function for "clearing" the console
+    
     static void flush() {
+	
 	for (int i = 0; i < 100; i++) {
 	    System.out.println("");
 	}
@@ -15,6 +18,7 @@ public class GameScript {
 	// General variable setup
 	
 	int i;
+	int i2;
 	int randomColor;
 	int attempt = 0;
 	
@@ -23,9 +27,10 @@ public class GameScript {
 	final int codeLength = 4;
 	
 	String name;
-	String positionEvaluation;
-	String playerInput;
+	String character;
+	String positionEvaluation = "";
 	String colorCode = "";
+	String playerInput = "";
 	
 	boolean firstAttempt = false;
 	boolean wrongInput = false;
@@ -43,9 +48,9 @@ public class GameScript {
 	colorList.add("P");
 	colorList.add("C");
 	
-	// Huge ass Master-Mind text
+	// Huge ass text
 
-	final String masterMindLargeText =   " ___ ___   ____   _____ ______    ___  ____          ___ ___  ____  ____   ___   \r\n"
+	final String masterMindText =   " ___ ___   ____   _____ ______    ___  ____          ___ ___  ____  ____   ___   \r\n"
 				           + "|   |   | /    | / ___/|      |  /  _]|    \\        |   |   ||    ||    \\ |   \\  \r\n"
 				           + "| _   _ ||  o  |(   \\_ |      | /  [_ |  D  ) _____ | _   _ | |  | |  _  ||    \\ \r\n"
 				           + "|  \\_/  ||     | \\__  ||_|  |_||    _]|    / |     ||  \\_/  | |  | |  |  ||  D  |\r\n"
@@ -53,14 +58,39 @@ public class GameScript {
 				           + "|   |   ||  |  | \\    |  |  |  |     ||  .  \\       |   |   | |  | |  |  ||     |\r\n"
 				           + "|___|___||__|__|  \\___|  |__|  |_____||__|\\_|       |___|___||____||__|__||_____|\r\n";
 	
+	final String goodJobText = "  ____   ___    ___   ___         ____   ___   ____   __ \r\n"
+				 + " /    | /   \\  /   \\ |   \\       |    | /   \\ |    \\ |  |\r\n"
+				 + "|   __||     ||     ||    \\      |__  ||     ||  o  )|  |\r\n"
+				 + "|  |  ||  O  ||  O  ||  D  |     __|  ||  O  ||     ||__|\r\n"
+				 + "|  |_ ||     ||     ||     |    /  |  ||     ||  O  | __ \r\n"
+				 + "|     ||     ||     ||     |    \\  `  ||     ||     ||  |\r\n"
+				 + "|___,_| \\___/  \\___/ |_____|     \\____j \\___/ |_____||__|\r\n";
+	
+	final String wompWompText = " __          __                               __          __                                     __\r\n"
+				  + " \\ \\        / /                               \\ \\        / /                                _   / /\r\n"
+				  + "  \\ \\  /\\  / /    ___    _ __ ___    _ __      \\ \\  /\\  / /    ___    _ __ ___    _ __     (_) | | \r\n"
+				  + "   \\ \\/  \\/ /    / _ \\  | '_ ` _ \\  | '_ \\      \\ \\/  \\/ /    / _ \\  | '_ ` _ \\  | '_ \\        | | \r\n"
+				  + "    \\  /\\  /    | (_) | | | | | | | | |_) |      \\  /\\  /    | (_) | | | | | | | | |_) |    _  | | \r\n"
+				  + "     \\/  \\/      \\___/  |_| |_| |_| | .__/        \\/  \\/      \\___/  |_| |_| |_| | .__/    (_) | | \r\n"
+				  + "                                    | |                                          | |            \\_\\\r\n"
+				  + "                                    |_|                                          |_|               \r\n";
+	
+	final String tooBadText = "  _______                     _                   _   _ \r\n"
+				+ " |__   __|                   | |                 | | | |\r\n"
+				+ "    | |      ___     ___     | |__     __ _    __| | | |\r\n"
+				+ "    | |     / _ \\   / _ \\    | '_ \\   / _` |  / _` | | |\r\n"
+				+ "    | |    | (_) | | (_) |   | |_) | | (_| | | (_| | |_|\r\n"
+				+ "    |_|     \\___/   \\___/    |_.__/   \\__,_|  \\__,_| (_)";
 	
 	
+	// Introduction
 	
-	flush();
 	System.out.println("Welcome to..."); 
-	System.out.println(masterMindLargeText);
+	System.out.println(masterMindText);
 	System.out.println("Let's start with your name...");
 	name = sc.nextLine();
+	
+	// Random code generation
 	
 	for (i = 0; i < codeLength; i++) {
 	    
@@ -69,23 +99,37 @@ public class GameScript {
 	    
 	    }
 	
+	// Game
+	
 	for (i = 0; i < gameLength; i++) {
+	    
+	    // Asks for user-input and displays options
 	    
 	    attempt = i + 1;
 	    flush();
-	    System.out.println(colorCode);
-	    System.out.println(masterMindLargeText);
-	    System.out.println("Attempt: " + attempt + "\r\n"
+	    
+	    // Debug mode if the name is set to "Admin"
+	    
+	    if (name.equals("Admin")) {
+		System.out.println(colorCode);
+	    }
+	    
+	    System.out.println(masterMindText);
+	    System.out.println("Attempt: " + attempt + "/" + gameLength + "\r\n"
 		    	     + "Welcome " + name + ", please enter your guess down below.\r\n"
 		    	     + "Choose from: " + colorList + "\r\n");
 	    
+	    // Runs when the user has made a previous guess for evaluation
+	    
 	    if (firstAttempt == true) {
 		System.out.println("Previous guess:\r\n"
-				 + name + "\r\n" + "\r\n"
-				 + "Incorrect colors are represented with an empty space.\r\n"
+				 + playerInput + "\n\r" + positionEvaluation + "\r\n" + "\r\n"
+				 + "Incorrect colors are represented with hyphens (-).\r\n"
 				 + "Correct colors are labeled white (B).\r\n"
 				 + "Colors present in the code but in the incorrect position are labeled white (W).\r\n");
 	    }
+	    
+	    // Runs when the user give an input longer than {codeLength}
 	    
 	    if (wrongInput == true) {
 		wrongInput = false;
@@ -93,7 +137,12 @@ public class GameScript {
 				 + "Your guess must be at four characters long!");
 	    }
 	    
+	    // Makes the user-input upper case
+	    
 	    playerInput = sc.nextLine();
+	    playerInput = playerInput.toUpperCase();
+	    
+	    // Checks if the code is {codeLength} characters long
 	    
 	    if (playerInput.length() != colorCode.length()) {
 		i--;
@@ -101,17 +150,58 @@ public class GameScript {
 		continue;
 	    }
 	    
-	    if (playerInput.toUpperCase().equals(colorCode)) {
+	    // Runs when the player guesses correctly
+	    
+	    if (playerInput.equals(colorCode)) {
+		
+		flush();
+		System.out.println(masterMindText);
+		System.out.println(goodJobText);
 		System.out.println("Nice you did it!");
 		sc.close();
 		return;
+		
 	    }
+	    
+	    // Sets variables for next execution
+	    
 	    firstAttempt = true;
+	    positionEvaluation = "";
+	    
+	    // Checks if individual characters match the code and evaluates it
+	    
+	    for (i2 = 0; i2 < codeLength; i2++) {
+		
+		character = "" + playerInput.charAt(i2);
+		
+		if (playerInput.charAt(i2) == colorCode.charAt(i2)) {
+		    
+		    positionEvaluation = positionEvaluation + "B";
+		}
+		
+		else if (colorCode.contains(character)) {
+		    
+		    positionEvaluation = positionEvaluation + "W";
+		}
+		
+		else {
+		    
+		    positionEvaluation = positionEvaluation + "-";
+		}
+	    }
 	    
 	    
 	    
 
 	}
+	
+	// No-attempts left
+	
 	sc.close();
+	flush();
+	System.out.println(masterMindText);
+	System.out.println(wompWompText);
+	System.out.println(tooBadText);
+	
     }
 }
