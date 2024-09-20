@@ -96,7 +96,6 @@ public class GameScript {
 	    
 	    randomColor = r.nextInt(colorCount - 1);
 	    colorCode = colorCode + colorList.get(randomColor);
-	    
 	    }
 	
 	// Game
@@ -160,7 +159,6 @@ public class GameScript {
 		System.out.println("Nice you did it!");
 		sc.close();
 		return;
-		
 	    }
 	    
 	    // Sets variables for next execution
@@ -189,10 +187,6 @@ public class GameScript {
 		    positionEvaluation = positionEvaluation + "-";
 		}
 	    }
-	    
-	    
-	    
-
 	}
 	
 	// No-attempts left
@@ -202,6 +196,5 @@ public class GameScript {
 	System.out.println(masterMindText);
 	System.out.println(wompWompText);
 	System.out.println(tooBadText);
-	
     }
 }
