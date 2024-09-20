@@ -1,29 +1,33 @@
 package game;
 
-import java.util.concurrent.TimeUnit;
 import java.util.*;
 
 public class GameScript {
     
     static void flush() {
-	int i;
-	i = 0;
+	int i = 0;
 	while (i < 100) {
 	    i++;
-	    System.out.println(" ");
+	    System.out.println("");
 	}
     }
     
     public static void main(String[] args) throws InterruptedException {
 	
 	// General variable setup
-	int i;
+	int i = 0;
+	int randomColor = 0;
+
+	final int codeLength = 5;
 	Scanner sc = new Scanner(System.in);
+	Random r = new Random();
 	
 	String name;
-	final int codeLength = 5;
+	String colorCode = "";
 	
-	// Color list array 
+
+	
+	// Color list array
 	
 	ArrayList<String> colorList = new ArrayList<>();
 	colorList.add("R");
@@ -46,15 +50,23 @@ public class GameScript {
 	
 	
 	
-	
-	
+	flush();
 	System.out.println("Welcome to..."); 
 	System.out.println(masterMindLargeText);
-	System.out.println("Let's star with your name...");
+	System.out.println("Let's start with your name...");
 	name = sc.nextLine();
-	System.out.println(name);
-	TimeUnit.SECONDS.sleep(1);
 	flush();
+	
 	System.out.println(masterMindLargeText);
+	System.out.println("All right " + name + ", time to begin...");
+	
+	while (i < codeLength) {
+	    randomColor = r.nextInt(5);
+	    colorCode = colorCode + colorList.get(randomColor);
+	    
+	    i++;
+	    
+	}
+	System.out.println(colorCode);
     }
 }
