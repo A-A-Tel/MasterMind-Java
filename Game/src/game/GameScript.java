@@ -5,9 +5,7 @@ import java.util.*;
 public class GameScript {
     
     static void flush() {
-	int i = 0;
-	while (i < 100) {
-	    i++;
+	for (int i = 0; i < 100; i++) {
 	    System.out.println("");
 	}
     }
@@ -26,9 +24,11 @@ public class GameScript {
 	
 	String name;
 	String positionEvaluation;
+	String playerInput;
 	String colorCode = "";
 	
 	boolean firstAttempt = false;
+	boolean wrongInput = false;
 	
 	Scanner sc = new Scanner(System.in);
 	Random r = new Random();
@@ -77,19 +77,31 @@ public class GameScript {
 	    System.out.println(masterMindLargeText);
 	    System.out.println("Attempt: " + attempt + "\r\n"
 		    	     + "Welcome " + name + ", please enter your guess down below.\r\n"
-		    	     + "Choose from: " + colorList);
+		    	     + "Choose from: " + colorList + "\r\n");
 	    
 	    if (firstAttempt == true) {
 		System.out.println("Previous guess:\r\n"
-				 + name + "\r\n"
+				 + name + "\r\n" + "\r\n"
 				 + "Incorrect colors are represented with an empty space.\r\n"
 				 + "Correct colors are labeled white (B).\r\n"
-				 + "Colors present in the code but in the incorrect position are labeled white (W).");
+				 + "Colors present in the code but in the incorrect position are labeled white (W).\r\n");
 	    }
 	    
+	    if (wrongInput == true) {
+		wrongInput = false;
+		System.out.println("ERROR\r\n"
+				 + "Your guess must be at four characters long!");
+	    }
 	    
+	    playerInput = sc.nextLine();
 	    
-	    if (sc.nextLine().toUpperCase().equals(colorCode)) {
+	    if (playerInput.length() != colorCode.length()) {
+		i--;
+		wrongInput = true;
+		continue;
+	    }
+	    
+	    if (playerInput.toUpperCase().equals(colorCode)) {
 		System.out.println("Nice you did it!");
 		sc.close();
 		return;
