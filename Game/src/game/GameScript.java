@@ -6,7 +6,16 @@ public class GameScript {
     public static void main(String[] args) {
 	
 	// Setup Variables
-	String name;
+	
+	ArrayList<String> colorList = new ArrayList<>();
+	colorList.add("R");
+	colorList.add("G");
+	colorList.add("B");
+	colorList.add("Y");
+	colorList.add("P");
+	colorList.add("C");
+	
+	int i = 0;
 	final String masterMindLarge =   " ___ ___   ____   _____ ______    ___  ____          ___ ___  ____  ____   ___   \r\n"
 				       + "|   |   | /    | / ___/|      |  /  _]|    \\        |   |   ||    ||    \\ |   \\  \r\n"
 				       + "| _   _ ||  o  |(   \\_ |      | /  [_ |  D  ) _____ | _   _ | |  | |  _  ||    \\ \r\n"
@@ -16,5 +25,6 @@ public class GameScript {
 				       + "|___|___||__|__|  \\___|  |__|  |_____||__|\\_|       |___|___||____||__|__||_____|\r\n";
 	
 	System.out.println(masterMindLarge);
+	System.out.println(colorList);
     }
 }
