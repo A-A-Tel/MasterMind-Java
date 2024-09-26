@@ -170,7 +170,7 @@ public class GameScript {
 	    firstAttempt = true;
 	    positionEvaluation = "";
 	    
-	    // Checks if individual characters match the code and evaluates it
+	    // Checks if individual characters match the code and evaluates it, throws an error when the character doesn't exist
 	    
 	    for (i2 = 0; i2 < codeLength; i2++) {
 		
