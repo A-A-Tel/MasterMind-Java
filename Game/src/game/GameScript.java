@@ -23,7 +23,7 @@ public class GameScript {
 	int attempt = 0;
 	
 	final int colorCount = 6;
-	final int gameLength = 10;
+	final int gameLength = 1;
 	final int codeLength = 4;
 	
 	String name;
@@ -34,6 +34,7 @@ public class GameScript {
 	
 	boolean firstAttempt = false;
 	boolean wrongInput = false;
+	boolean correctGuess = false;
 	
 	Scanner sc = new Scanner(System.in);
 	Random r = new Random();
@@ -129,10 +130,10 @@ public class GameScript {
 	    
 	    if (firstAttempt == true) {
 		System.out.println("Previous guess:\r\n"
-				 + playerInput + "\n\r" + positionEvaluation + "\r\n" + "\r\n"
-				 + "Incorrect colors are represented with hyphens (-).\r\n"
-				 + "Correct colors are labeled black (B).\r\n"
-				 + "Colors present in the code but in the incorrect position are labeled white (W).\r\n");
+				 		 + playerInput + "\n\r" + positionEvaluation + "\r\n" + "\r\n"
+				 		 + "Incorrect colors are represented with hyphens (-).\r\n"
+				 		 + "Correct colors are labeled black (B).\r\n"
+				 		 + "Colors present in the code but in the incorrect position are labeled white (W).\r\n");
 	    }
 	    
 	    // Runs when the user give an input longer than {codeLength}
@@ -140,7 +141,7 @@ public class GameScript {
 	    if (wrongInput == true) {
 		wrongInput = false;
 		System.out.println("ERROR\r\n"
-				 + "Your guess must be at least " + codeLength + " characters long!");
+				 		 + "Your guess must be at least " + codeLength + " characters long!");
 	    }
 	    
 	    // Makes the user-input upper case
@@ -151,21 +152,17 @@ public class GameScript {
 	    // Checks if the code is {codeLength} characters long
 	    
 	    if (playerInput.length() != colorCode.length()) {
-		i--;
-		wrongInput = true;
-		continue;
+	    	i--;
+	    	wrongInput = true;
+	    	continue;
 	    }
 	    
 	    // Runs when the player guesses correctly
 	    
 	    if (playerInput.equals(colorCode)) {
-		
-		flush();
-		System.out.println(masterMindText);
-		System.out.println(goodJobText);
-		System.out.println(goodBoyText);
-		sc.close();
-		return;
+	    	
+	    	correctGuess = true;
+	    	break;
 	    }
 	    
 	    // Sets variables for next execution
@@ -177,31 +174,41 @@ public class GameScript {
 	    
 	    for (i2 = 0; i2 < codeLength; i2++) {
 		
-		character = "" + playerInput.charAt(i2);
+	    	character = "" + playerInput.charAt(i2);
 		
-		if (playerInput.charAt(i2) == colorCode.charAt(i2)) {
+	    	if (playerInput.charAt(i2) == colorCode.charAt(i2)) {
 		    
-		    positionEvaluation = positionEvaluation + "B";
-		}
+	    		positionEvaluation = positionEvaluation + "B";
+	    	}
 		
-		else if (colorCode.contains(character)) {
+	    	else if (colorCode.contains(character)) {
 		    
-		    positionEvaluation = positionEvaluation + "W";
-		}
+	    		positionEvaluation = positionEvaluation + "W";
+	    	}
 		
-		else {
+	    	else {
 		    
-		    positionEvaluation = positionEvaluation + "-";
-		}
+	    		positionEvaluation = positionEvaluation + "-";
+	    	}
 	    }
 	}
 	
 	// No-attempts left
-	
+
 	sc.close();
 	flush();
-	System.out.println(masterMindText);
-	System.out.println(wompWompText);
-	System.out.println(tooBadText);
-    }
+	
+	if (correctGuess) {
+	
+		System.out.println(masterMindText);
+		System.out.println(goodJobText);
+		System.out.println(goodBoyText);
+	}
+	else {
+		
+		System.out.println(masterMindText);
+		System.out.println(wompWompText);
+		System.out.println(tooBadText);
+	}
+}
 }
