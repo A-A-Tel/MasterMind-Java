@@ -23,7 +23,7 @@ public class GameScript {
 	int attempt = 0;
 	
 	final int colorCount = 6;
-	final int gameLength = 1;
+	final int gameLength = 10;
 	final int codeLength = 4;
 	
 	String name;
@@ -108,7 +108,7 @@ public class GameScript {
 	
 	// Game
 	
-	for (i = 0; i < gameLength; i++) {
+	outerLoop: for (i = 0; i < gameLength; i++) {
 	    
 	    // Asks for user-input and displays options
 	    
@@ -141,7 +141,7 @@ public class GameScript {
 	    if (wrongInput == true) {
 		wrongInput = false;
 		System.out.println("ERROR\r\n"
-				 		 + "Your guess must be at least " + codeLength + " characters long!");
+				 		 + "Your guess must be at least " + codeLength + " characters long and only contain " + colorList + "!");
 	    }
 	    
 	    // Makes the user-input upper case
@@ -175,20 +175,28 @@ public class GameScript {
 	    for (i2 = 0; i2 < codeLength; i2++) {
 		
 	    	character = "" + playerInput.charAt(i2);
-		
-	    	if (playerInput.charAt(i2) == colorCode.charAt(i2)) {
+	    	if (colorList.contains(character)) {
+	    	
+	    		if (playerInput.charAt(i2) == colorCode.charAt(i2)) {
 		    
-	    		positionEvaluation = positionEvaluation + "B";
-	    	}
+	    			positionEvaluation = positionEvaluation + "B";
+	    		}
 		
-	    	else if (colorCode.contains(character)) {
+	    		else if (colorCode.contains(character)) {
 		    
-	    		positionEvaluation = positionEvaluation + "W";
-	    	}
+	    			positionEvaluation = positionEvaluation + "W";
+	    		}
 		
+	    		else {
+		    
+	    			positionEvaluation = positionEvaluation + "-";
+	    		}
+	    	}
 	    	else {
-		    
-	    		positionEvaluation = positionEvaluation + "-";
+	    		wrongInput = true;
+	    		firstAttempt = false;
+	    		i--;
+	    		continue outerLoop;
 	    	}
 	    }
 	}
