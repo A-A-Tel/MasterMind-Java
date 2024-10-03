@@ -8,9 +8,9 @@ public class GameScript {
     
     static void flush() {
 	
-	for (int i = 0; i < 100; i++) {
-	    System.out.println("");
-	}
+    	for (int i = 0; i < 100; i++) {
+    		System.out.println("");
+    	}
     }
     
     public static void main(String[] args) {
@@ -22,9 +22,8 @@ public class GameScript {
 	int randomColor;
 	int attempt = 0;
 	
-	final int colorCount = 6;
 	final int gameLength = 10;
-	final int codeLength = 4;
+	final int codeLength = 44;
 	
 	String name;
 	String character;
@@ -102,7 +101,7 @@ public class GameScript {
 	
 	for (i = 0; i < codeLength; i++) {
 	    
-	    randomColor = r.nextInt(colorCount - 1);
+	    randomColor = r.nextInt(colorList.size());
 	    colorCode = colorCode + colorList.get(randomColor);
 	    }
 	
@@ -116,7 +115,7 @@ public class GameScript {
 	    flush();
 	    
 	    // Debug mode if the name is set to "Admin"
-	    
+
 	    if (name.equals("Admin")) {
 		System.out.println(colorCode);
 	    }
