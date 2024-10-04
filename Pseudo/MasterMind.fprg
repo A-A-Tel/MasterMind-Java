@@ -4,9 +4,9 @@
         <attribute name="name" value="MasterMind"/>
         <attribute name="authors" value="anoua"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2024-09-30 02:34:41 pm"/>
+        <attribute name="saved" value="2024-10-04 02:29:02 pm"/>
         <attribute name="created" value="YW5vdWE7QU5OTy1NU0k7MjAyNC0wOS0zMDsxMjo1Nzo0NiBwbTsyNDYz"/>
-        <attribute name="edited" value="YW5vdWE7QU5OTy1NU0k7MjAyNC0wOS0zMDswMjozNDo0MSBwbTs2OzI1NjU="/>
+        <attribute name="edited" value="YW5vdWE7QU5OTy1NU0k7MjAyNC0xMC0wNDswMjoyOTowMiBwbTs3OzI1NjA="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -68,9 +68,9 @@
                     <else/>
                 </if>
                 <input variable="playerInput"/>
-                <assign variable="firstInput" expression="true"/>
                 <if expression="playerInput == secretCode">
                     <then>
+                        <assign variable="firstInput" expression="true"/>
                         <assign variable="hasWon" expression="true"/>
                         <assign variable="i" expression="maxAttempts"/>
                     </then>
