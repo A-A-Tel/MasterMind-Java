@@ -23,9 +23,10 @@ public class GameScript {
 	int attempt = 0;
 	
 	final int gameLength = 10;
-	final int codeLength = 44;
+	final int codeLength = 4;
 	
 	String name;
+	String gender;
 	String character;
 	String positionEvaluation = "";
 	String colorCode = "";
@@ -90,12 +91,36 @@ public class GameScript {
 				 + "|     ||     ||     ||     |    |     ||     ||     ||  |\r\n"
 				 + "|___,_| \\___/  \\___/ |_____|    |_____| \\___/ |____/ |__|\r\n";
 	
+	final String goodGirlText = "  ____   ___    ___   ___         ____  ____  ____   _     \r\n"
+			+ " /    | /   \\  /   \\ |   \\       /    ||    ||    \\ | |    \r\n"
+			+ "|   __||     ||     ||    \\     |   __| |  | |  D  )| |    \r\n"
+			+ "|  |  ||  O  ||  O  ||  D  |    |  |  | |  | |    / | |___ \r\n"
+			+ "|  |_ ||     ||     ||     |    |  |_ | |  | |    \\ |     |\r\n"
+			+ "|     ||     ||     ||     |    |     | |  | |  .  \\|     |\r\n"
+			+ "|___,_| \\___/  \\___/ |_____|    |___,_||____||__|\\_||_____|\r\n";
+	
+	
+	
 	// Introduction
 	
 	System.out.println("Welcome to..."); 
 	System.out.println(masterMindText);
 	System.out.println("Let's start with your name...");
 	name = sc.nextLine();
+	System.out.println("And your gender?");
+	
+	// Genderselection since I need to show that I know how to use all of the loop types :)
+	
+	do {
+		System.out.println("'male' or 'female'");
+		gender = sc.nextLine();
+		
+		if (gender.equals("male") || gender.equals("female")) {
+			break;
+		}
+		System.out.println("Enter a valid gender!!!");
+	}
+	while (true);
 	
 	// Random code generation
 	
@@ -209,7 +234,13 @@ public class GameScript {
 	
 		System.out.println(masterMindText);
 		System.out.println(goodJobText);
-		System.out.println(goodBoyText);
+		
+		if (gender.equals("male")) {
+			System.out.println(goodBoyText);
+		}
+		else {
+			System.out.println(goodGirlText);
+		}
 	}
 	else {
 		
