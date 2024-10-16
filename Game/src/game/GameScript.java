@@ -40,7 +40,7 @@ public class GameScript {
 
 		// Color list array
 
-		String[] colorList = new String[] { "R", "G", "B", "Y", "P", "C" };
+		String[] colorList = new String[] { "R", "G", "B", "Y", "P", "O" };
 
 		// Huge ass text
 
