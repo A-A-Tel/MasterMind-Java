@@ -7,7 +7,6 @@ public class GameScript {
 	// Function for "clearing" the console
 
 	static void flush() {
-
 		for (int i = 0; i < 100; i++) {
 			System.out.println("");
 		}
@@ -41,13 +40,7 @@ public class GameScript {
 
 		// Color list array
 
-		ArrayList<String> colorList = new ArrayList<>();
-		colorList.add("R");
-		colorList.add("G");
-		colorList.add("B");
-		colorList.add("Y");
-		colorList.add("P");
-		colorList.add("C");
+		String[] colorList = new String[] { "R", "G", "B", "Y", "P", "C" };
 
 		// Huge ass text
 
@@ -124,8 +117,8 @@ public class GameScript {
 
 		for (i = 0; i < codeLength; i++) {
 
-			randomColor = r.nextInt(colorList.size());
-			colorCode = colorCode + colorList.get(randomColor);
+			randomColor = r.nextInt(colorList.length);
+			colorCode = colorCode + colorList[randomColor];
 		}
 
 		// Game
@@ -145,7 +138,8 @@ public class GameScript {
 
 			System.out.println(masterMindText);
 			System.out.println("Attempt: " + attempt + "/" + gameLength + "\r\n" + "Welcome " + name
-					+ ", please enter your guess down below.\r\n" + "Choose from: " + colorList + "\r\n");
+					+ ", please enter your guess down below.\r\n" + "Choose from: " + Arrays.asList(colorList)
+					+ "\r\n");
 
 			// Runs when the user has made a previous guess for evaluation
 
@@ -161,7 +155,7 @@ public class GameScript {
 			if (wrongInput == true) {
 				wrongInput = false;
 				System.out.println("ERROR\r\n" + "Your guess must be at least " + codeLength
-						+ " characters long and only contain " + colorList + "!");
+						+ " characters long and only contain " + Arrays.toString(colorList) + "!");
 			}
 
 			// Makes the user-input upper case
@@ -196,17 +190,15 @@ public class GameScript {
 			for (i2 = 0; i2 < codeLength; i2++) {
 
 				character = "" + playerInput.charAt(i2);
-				if (colorList.contains(character)) {
+				if (Arrays.asList(colorList).contains(character)) {
 
 					if (playerInput.charAt(i2) == colorCode.charAt(i2)) {
 
 						positionEvaluation = positionEvaluation + "B";
-					}
-					else if (colorCode.contains(character)) {
+					} else if (colorCode.contains(character)) {
 
 						positionEvaluation = positionEvaluation + "W";
-					}
-					else {
+					} else {
 
 						positionEvaluation = positionEvaluation + "-";
 					}
