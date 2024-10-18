@@ -100,7 +100,7 @@ public class Main {
 		name = sc.nextLine();
 		System.out.println("And your gender?");
 
-		// Genderselection since I need to show that I know how to use all of the loop
+		// Gender selection since I need to show that I know how to use all of the loop
 		// types :)
 
 		do {
