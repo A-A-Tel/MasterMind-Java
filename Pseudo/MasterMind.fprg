@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="MasterMind"/>
+        <attribute name="authors" value="anoua"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-04 02:29:02 pm"/>
+        <attribute name="created" value="YW5vdWE7QU5OTy1NU0k7MjAyNC0wOS0zMDsxMjo1Nzo0NiBwbTsyNDYz"/>
+        <attribute name="edited" value="YW5vdWE7QU5OTy1NU0k7MjAyNC0xMC0wNDswMjoyOTowMiBwbTs3OzI1NjA="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="secretCode, userInput, name, colorList, playerInput, codeEval" type="String" array="False" size=""/>
+            <assign variable="secretCode" expression="&quot;&quot;"/>
+            <assign variable="userInput" expression="&quot;&quot;"/>
+            <assign variable="colorList" expression="&quot;[ &quot;"/>
+            <declare name="i, i2, i3, codeLength, colorCount, maxAttempts" type="Integer" array="False" size=""/>
+            <assign variable="codeLength" expression="4"/>
+            <assign variable="colorCount" expression="6"/>
+            <assign variable="maxAttempts" expression="10"/>
+            <declare name="firstInput, wrongInput, hasWon, containsChar, isValid" type="Boolean" array="False" size=""/>
+            <assign variable="firstInput" expression="false"/>
+            <assign variable="wrongInput" expression="false"/>
+            <assign variable="hasWon" expression="false"/>
+            <declare name="colors" type="String" array="True" size="6"/>
+            <assign variable="colors[0]" expression="&quot;R&quot;"/>
+            <assign variable="colors[1]" expression="&quot;G&quot;"/>
+            <assign variable="colors[2]" expression="&quot;B&quot;"/>
+            <assign variable="colors[3]" expression="&quot;Y&quot;"/>
+            <assign variable="colors[4]" expression="&quot;P&quot;"/>
+            <assign variable="colors[5]" expression="&quot;C&quot;"/>
+            <output expression="&quot;Welcome to MasterMind&quot;" newline="True"/>
+            <output expression="&quot;Please enter your name...&quot;" newline="True"/>
+            <input variable="name"/>
+            <for variable="i" start="0" end="codeLength-1" direction="inc" step="1">
+                <assign variable="secretCode" expression="secretCode &amp; &#13;&#10;colors[Random(colorCount)]"/>
+            </for>
+            <for variable="i" start="0" end="colorCount-1" direction="inc" step="1">
+                <assign variable="colorList" expression="colorList &amp; colors[i] &amp; &quot;, &quot;"/>
+            </for>
+            <assign variable="colorList" expression="colorList &amp; &quot;]&quot;"/>
+            <if expression="name == &quot;Admin&quot;">
+                <then>
+                    <output expression="secretCode" newline="True"/>
+                </then>
+                <else/>
+            </if>
+            <for variable="i" start="0" end="maxAttempts-1" direction="inc" step="1">
+                <output expression="&quot;Attempt: &quot; &amp; i + 1 &amp; &quot;/&quot; &amp; maxAttempts" newline="True"/>
+                <output expression="&quot;Please enter youe guess down below...&quot;" newline="True"/>
+                <output expression="colorList" newline="True"/>
+                <if expression="firstInput">
+                    <then>
+                        <output expression="&quot;&quot;" newline="True"/>
+                        <output expression="playerInput" newline="True"/>
+                        <output expression="codeEval" newline="True"/>
+                        <output expression="&quot;Correct: B | Present: W | Incorrect: -&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="wrongInput">
+                    <then>
+                        <assign variable="wrongInput" expression="false"/>
+                        <output expression="&quot;&quot;" newline="True"/>
+                        <output expression="&quot;The code must be &quot; &amp; codeLength &amp; &quot; characters long and only contain valid characters! (Remember to use capitals!!)&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <input variable="playerInput"/>
+                <if expression="playerInput == secretCode">
+                    <then>
+                        <assign variable="firstInput" expression="true"/>
+                        <assign variable="hasWon" expression="true"/>
+                        <assign variable="i" expression="maxAttempts"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="Len(secretcode) == Len(playerInput)">
+                    <then>
+                        <assign variable="codeEval" expression="&quot;&quot;"/>
+                        <assign variable="isValid" expression="false"/>
+                        <for variable="i2" start="0" end="codeLength-1" direction="inc" step="1">
+                            <for variable="i3" start="0" end="colorCount-1" direction="inc" step="1">
+                                <if expression="Char(playerInput,i2) == colors[i3]">
+                                    <then>
+                                        <assign variable="isValid" expression="true"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </for>
+                            <if expression="isValid">
+                                <then>
+                                    <if expression="Char(secretCode,i2) == Char(playerInput,i2)">
+                                        <then>
+                                            <assign variable="codeEval" expression="codeEval &amp; &quot;B&quot;"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="containsChar" expression="false"/>
+                                            <for variable="i3" start="0" end="codeLength-1" direction="inc" step="1">
+                                                <if expression="Char(secretCode,i3) == Char(playerInput,i2)">
+                                                    <then>
+                                                        <assign variable="containsChar" expression="true"/>
+                                                    </then>
+                                                    <else/>
+                                                </if>
+                                            </for>
+                                            <if expression="containsChar">
+                                                <then>
+                                                    <assign variable="codeEval" expression="codeEval &amp; &quot;W&quot;"/>
+                                                </then>
+                                                <else>
+                                                    <assign variable="codeEval" expression="codeEval &amp; &quot;-&quot;"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <assign variable="i2" expression="colorCount"/>
+                                    <assign variable="firstInput" expression="false"/>
+                                    <assign variable="wrongInput" expression="true"/>
+                                    <assign variable="i" expression="i-1"/>
+                                </else>
+                            </if>
+                        </for>
+                    </then>
+                    <else>
+                        <assign variable="wrongInput" expression="true"/>
+                        <assign variable="i" expression="i - 1"/>
+                    </else>
+                </if>
+            </for>
+            <if expression="hasWon">
+                <then>
+                    <output expression="&quot;Nice you did it!&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Womp Womp&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
