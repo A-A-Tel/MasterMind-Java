@@ -40,7 +40,7 @@ public class Main {
 
 		// Color list array
 
-		String[] colorList = new String[] { "R", "G", "B", "Y", "P", "O"};
+		final String[] colorList = new String[] { "R", "G", "B", "Y", "P", "O"};
 
 		// Huge ass text
 
