@@ -144,7 +144,7 @@ public class Main {
 			// Runs when the user has made a previous guess for evaluation
 
 			if (firstAttempt == true) {
-				System.out.println("Previous guess:\r\n" + playerInput + "\r\n" + positionEvaluation + "\r\n" + "\r\n"
+				System.out.println("Previous guess:\r\n" + playerInput + "\r\n\r\n" + positionEvaluation + "\r\n" + "\r\n"
 						+ "Incorrect colors are represented with hyphens (-).\r\n"
 						+ "Correct colors are labeled black (B).\r\n"
 						+ "Colors present in the code but in the incorrect position are labeled white (W).\r\n");
