@@ -1,2 +1,2 @@
 # MasterMind-Java
- First lil game for school
+First lil game for school
